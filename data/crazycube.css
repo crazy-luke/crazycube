@@ -1,0 +1,228 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: rgb(131, 164, 222);
+}
+
+#header-wrap {
+    background-color: rgb(131, 164, 222);
+    position: fixed;
+    height: auto;
+    width: 100%;
+    z-index: 100;
+    margin-left: -10px;
+    margin-top: -10px;
+    padding: 10px 10px 0px 10px;
+}
+
+#footer-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#footer-wrap p {
+    text-align: right;
+    color: rgb(116, 109, 109);
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.title {
+    /* display: inline-block; */
+    font-size: 34px;
+    border-bottom: 1px solid gray;
+    margin: 10px 5px 12px 5px;
+    text-align: center;
+}
+
+.tab {
+    background: grey;
+    overflow: auto;
+    border-radius: 10px;
+    margin-right: 14px;
+}
+
+.tab a {
+    width: auto;
+    padding: 0 12px 0 12px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: #fdfcff;
+    border-radius: 10px;
+    text-decoration: none;
+    float: left;
+    cursor: pointer;
+}
+
+.tab a:hover,
+.tab .active {
+    background-color: #3070e6;
+}
+
+.content {
+    /* height: 400px; */
+    /* padding-top: 50px; */
+    /* margin-top: 10px;*/
+    /* padding-top: 36px; */
+    /* padding: 10px;
+    color: #333;
+    border-radius: 10px;
+    background: rgb(244, 245, 247); */
+    width: auto;
+    height: auto;
+    padding: 10px;
+    color: #333;
+    background: rgb(244, 245, 247);
+    border-radius: 10px;
+}
+
+.content>div {
+    display: none;
+}
+
+.content>div:target {
+    display: block;
+}
+
+.warn-text {
+    color: red;
+}
+
+.hl-text {
+    color: blue;
+}
+
+.file-remain {
+    color: blue;
+}
+
+
+/* .content div {
+    display: none;
+}
+
+.content div:target {
+    display: block;
+} */
+
+.app-conf {
+    text-align: center;
+}
+
+.app-title {
+    font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.app-subtitle {
+    font-size: 16px;
+    height: 20px;
+    vertical-align: middle;
+    color: rgb(54, 50, 50);
+}
+
+.left-title {
+    display: inline-block;
+    width: 70px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.right-block {
+    width: 80%;
+    display: inline-block;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.app-conf input {
+    margin-bottom: 10px;
+    font-size: 20px;
+    width: 80%;
+    line-height: 1.5;
+}
+
+select {
+    margin-bottom: 10px;
+    font-size: 20px;
+    height: 36px;
+}
+
+select {
+    width: 26%;
+}
+
+select.wide-select {
+    width: 80%;
+}
+
+.app-conf textarea {
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 80%;
+}
+
+table {
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+}
+
+button {
+    font-size: medium;
+    margin: 10px;
+    color: rgb(77, 77, 77);
+}
+
+button#reboot-btn {
+    right: 10px;
+    top: 10px;
+    height: 40px;
+    color: red;
+    position: fixed;
+}
+
+table.table-container {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.table-container td {
+    border: #3070e6;
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 4px;
+}
+
+.loadpagediv {
+    width: 128px;
+    height: 128px;
+    position: absolute;
+    top: 50%;
+    margin-left: -80px;
+    margin-top: -68px;
+    left: 50%;
+    background: url("loading.gif") no-repeat;
+    z-index: 9999;
+    display: block;
+}
+
+.explan {
+    text-align: left;
+    margin-top: 50px;
+}

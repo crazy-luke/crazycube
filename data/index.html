@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立方豆</title>
+</head>
+
+<link rel="stylesheet" href="crazycube.css">
+<script src="jquery.min.js"></script>
+<script src="simpleUpload.min.js"></script>
+
+<body>
+
+    <header id="header-wrap">
+        <div>
+            <h1 class="title">立方豆 系统设置</h1>
+            <button id="reboot-btn" class="app-btn">重启 立方豆</button>
+        </div>
+
+        <!-- tab栏 -->
+        <div class="tab">
+            <a href="#c_wifi" class="active">无线网络</a>
+            <a href="#c_assistant">AI 助手</a>
+            <a href="#c_bluekey">手势蓝牙键盘</a>
+            <a href="#c_advance">高级设置</a>
+            <a style="pointer-events: none;">|</a>
+            <a href="#c_crazyfm">播客</a>
+            <a href="#c_photo">相册</a>
+        </div>
+        <br>
+    </header>
+    <!-- tab header 高度 占位 -->
+    <div id="tab_header_space"></div>
+    <!-- loading block -->
+    <div class="loadpagediv" id="loadpagediv"></div>
+
+    <!-- 内容栏 -->
+    <div class="content">
+
+        <!-- 高级设置 -->
+        <div id="c_advance">
+
+            <div class="app-conf">
+                <p class="app-title">
+                    设备配置
+                </p>
+
+                <label class="left-title">主题色RGB</label>
+                <input type="text" id="color-r" placeholder="R: 0~255" style="width: 27%;">
+                <input type="text" id="color-g" placeholder="G: 0~255" style="width: 25%;">
+                <input type="text" id="color-b" p laceholder="B: 0~255" style="width: 25%;">
+
+                <br><br>
+                <label class="left-title">向前手势</label>
+                <div class="right-block">
+                    <input type="checkbox" id="lock-gesture" style="width: 30px" checked>允许锁屏 (掌心向前靠近立方豆会触发锁屏，以避免其他手势误操作)
+                </div>
+
+                <div>
+                    <button id="device-save-btn" class="app-btn">保存 配置 信息</button>
+                </div>
+                <ol style="text-align: left; margin-top: 0px; ">
+                    <li>主题色: 会影响 LED 灯和部分 APP 颜色,数字范围<label class="hl-text"> 0～255 </label></li>
+                    <li>向前手势: 锁屏状态下再次向前手势靠近立方豆可以<label class="hl-text">解锁</label>；任务栏处理打开状态时<label class="hl-text">始终允许</label>锁屏操作</li>
+                </ol>
+            </div>
+            <br>
+            <hr>
+
+            <div class="app-conf">
+                <p class="app-title">
+                    APP 收纳盒
+                </p>
+                <div style="display: flex;justify-content: center;text-align:left; ">
+                    <ul id="group_0_row" style="width:200px; border:2px dashed grey; padding-bottom: 10px;">
+                        <p style="color:mediumblue;font-size: 15px;">首页列表</p>
+
+                        <li value="_assistant">AI 助手 </li>
+                    </ul>
+                    <div style=" text-align: center; margin-top: 14px;">
+                        <p> &nbsp; &nbsp; 点击APP名称 &nbsp; &nbsp;</p>
+                        <p>
+                            <----切换---->
+                        </p>
+                    </div>
+                    <ul id="group_1_row" style="width:200px; border:2px dashed grey; padding-bottom: 10px;">
+                        <p style="color:mediumblue;font-size: 15px;">《APP 收纳盒》</p>
+                        <li value="_destop">桌面</li>
+                        <li value="_manual">立方豆-手册</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <button id="group-save-btn" class="app-btn">保存 列表 信息</button>
+                </div>
+
+                <ol style="text-align: left; margin-top: 0px; ">
+                    <li>放入《APP 收纳盒》的APP，不会在首页显示</li>
+                    <li>建议将不常用的APP 放入《APP 收纳盒》</li>
+                </ol>
+
+            </div>
+        </div>
+
+
+        <div id="c_wifi">
+
+            <!-- WIFI -->
+            <div class="app-conf">
+                <p class="app-title">
+                    WIFI
+                </p>
+                <label class="left-title">SSID</label>
+                <input type="text" id="wifi-ssid" placeholder="SSID">
+                <br>
+                <label class="left-title">密码</label>
+                <input type="password" id="wifi-password" placeholder="Password">
+
+                <div>
+                    <button id="wifi-save-btn" class="app-btn">保存 Wifi 信息</button>
+                </div>
+
+            </div>
+
+            <ol class="explan">
+                <h3>操作说明:</h3>
+                <li>WIFI 支持 2.4G 频段</li>
+            </ol>
+        </div>
+
+
+        <!-- 播客 -->
+        <div id="c_crazyfm">
+            <!-- 播客 URL -->
+            <div class="app-conf">
+                <p class="app-title">播客</p>
+                <p class="app-subtitle">配置频道一</p>
+                <label class="left-title">名称</label>
+                <input type="text" id="crazyfm-1-title" placeholder="仅支付英文字符和数字">
+                <br>
+                <label class="left-title">地址</label>
+                <textarea type="text" id="crazyfm-1-url" placeholder="音频网络地址"></textarea>
+                <br>
+                <p class="app-subtitle">配置频道二</p>
+                <label class="left-title">名称</label>
+                <input type="text" id="crazyfm-2-title" placeholder="仅支付英文字符和数字">
+                <br>
+                <label class="left-title">地址</label>
+                <textarea type="text" id="crazyfm-2-url" placeholder="音频网络地址"></textarea>
+                <br>
+                <p class="app-subtitle">配置频道三</p>
+                <label class="left-title">名称</label>
+                <input type="text" id="crazyfm-3-title" placeholder="仅支付英文字符和数字">
+                <br>
+                <label class="left-title">地址</label>
+                <textarea type="text" id="crazyfm-3-url" placeholder="音频网络地址"></textarea>
+                <br>
+
+                <div>
+                    <button id="crazyfm-save-btn" class="app-btn">保存 播客 信息</button>
+                </div>
+            </div>
+        </div>
+
+        <!--AI 助手-->
+        <div id="c_assistant">
+            <!--百度API -->
+            <div class="app-conf">
+                <p class="app-title">
+                    百度语音 API
+                </p>
+                <label class="left-title">Key</label>
+                <input type="text" id="asst-id" placeholder="百度智能云->语音技术->应用列表->API Key">
+                <br>
+                <label class="left-title">Secret</label>
+                <input type="password" id="asst-secret" placeholder="百度智能云->语音技术->应用列表->Secret Key">
+                <br>
+
+                <label class="left-title">TTS</label>
+
+                <div class="right-block">
+                    <input type="radio" name="tts-voice" style="width: 5%;" value="0">女声
+                    <input type="radio" name="tts-voice" style="width: 5%;" value="3">男声
+                    <input type="radio" name="tts-voice" style="width: 5%;" value="-1">自定义
+                    <input type="text" id="tts-voice-custom" style="width:80px; margin-left: 20px; font-size: 18px;" disabled="true" placeholder="音库值">
+                </div>
+
+
+            </div>
+            <hr>
+            <!-- OpenAI -->
+            <div class="app-conf">
+                <p class="app-title">
+                    人工智能 AI 接口
+                </p>
+
+                <table class="table-container">
+
+                    <tr>
+                        <td>
+                            <input type="radio" name="asst-nlp" value="0" style="margin-bottom: 0px;">
+                            <p style="margin-top: 0px;">人工智障</p>
+                        </td>
+
+                        <td>
+                            人工智障仅支持部分指令：天气预报、粉丝、现在几点、开灯、关灯
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="asst-nlp" value="1" style="margin-bottom: 0px;">
+                            <p style="margin-top: 0px;">OpenAI GPT3.5</p>
+                        </td>
+
+                        <td>
+
+                            <p>超级人工智能AI ChatGPT，任何你感兴趣的话题都可以聊</p>
+                            <label class="left-title">SECRET KEY</label>
+                            <input type="password" type="text" id="asst-openai-key" placeholder="OpenAI API Key">
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <button id="asst-save-btn" class="app-btn">保存 API 信息</button>
+                </div>
+            </div>
+
+
+            <ol class="explan">
+                <h3>操作说明:</h3>
+                <li>百度API 获取地址
+                    <a href="https://console.bce.baidu.com/ai/#/ai/speech/app/list">https://console.bce.baidu.com/ai/#/ai/speech/app/list</a>
+                </li>
+                <li>OpenAI 获取地址
+                    <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a>
+                </li>
+            </ol>
+
+        </div>
+
+        <!-- 手势蓝牙键盘 -->
+        <div id="c_bluekey">
+
+            <div class="app-conf">
+                <p class="app-title">
+                    手势蓝牙键盘
+                </p>
+                <label class="left-title">名称</label>
+                <input type="text" id="keyboard-name" placeholder="键盘名称 keyboard name">
+                <br>
+                <div>
+                    <label class="left-title">向上</label>
+                    <select id="keyboard-select-up"></select> +
+                    <select id="keyboard-select-up-2"></select> +
+                    <select id="keyboard-select-up-3"></select>
+                </div>
+                <div>
+                    <label class="left-title">向下</label>
+                    <select id="keyboard-select-down"></select> +
+                    <select id="keyboard-select-down-2"></select> +
+                    <select id="keyboard-select-down-3"></select>
+                </div>
+                <div>
+                    <label class="left-title">向左</label>
+                    <select id="keyboard-select-left"></select> +
+                    <select id="keyboard-select-left-2"></select> +
+                    <select id="keyboard-select-left-3"></select>
+                </div>
+                <div>
+                    <label class="left-title">向右</label>
+                    <select id="keyboard-select-right"></select> +
+                    <select id="keyboard-select-right-2"></select> +
+                    <select id="keyboard-select-right-3"></select>
+                </div>
+                <div>
+                    <label class="left-title">顺时针</label>
+                    <select id="keyboard-select-clockwise"></select> +
+                    <select id="keyboard-select-clockwise-2"></select> +
+                    <select id="keyboard-select-clockwise-3"></select>
+                </div>
+                <div>
+                    <label class="left-title">逆时针</label>
+                    <select id="keyboard-select-anticlockwise"></select> +
+                    <select id="keyboard-select-anticlockwise-2"></select> +
+                    <select id="keyboard-select-anticlockwise-3"></select>
+                </div>
+                <div>
+                    <button id="keyboard-save-btn" class="app-btn">保存 键盘 信息</button>
+                </div>
+            </div>
+
+            <ol class="explan">
+                <h3>操作说明:</h3>
+                <li><label class="hl-text">挥手</label>手势 打开状态栏；<label class="hl-text">向左</label>切换到<label class="hl-text">手势蓝牙键盘</label> </li>
+                <li><label class="hl-text">顺时针</label> 开启或关闭键盘</li>
+                <li><label class="hl-text">向前</label>手势 锁屏 （锁屏状态下会启动手势蓝牙键盘）</li>
+                <li>电脑、Pad、手机 等设备查找蓝牙设备 (默认名：立方豆键盘），连接后 手势操作会转换成键盘信息</li>
+
+            </ol>
+        </div>
+
+        <!-- 照片 -->
+        <div id="c_photo">
+            <div class="app-conf">
+                <div>
+                    <!-- 上传文件按钮 -->
+                    <div>
+                        <form enctype='multipart/form-data' style="display:none;">
+                            <div class="form-group">
+                                <label for="photo_upload_input">test</label>
+                                <input id="photo_upload_input" name="file" type="file" accept=".jpeg,.jpg,.png">
+                            </div>
+                        </form>
+                        <button class="upload_btn" id="photo_upload_btn" type="button" style="text-align: center;">点击此处上传
+                            照片</button>
+                        <label id="photo_upload_filename"></label>
+                        <label id="photo_upload_state"></label>
+                    </div>
+
+                    <p class="warn-text">注意: 文件名称必须是 字母、数字, 文件后缀jpg或png。(建议使用jpg)</p>
+                    <label>已上传 照片：<label id="photo-file-total" class="hl-text">**</label> , 立方豆剩余空间：<label class="file-remain">**</label> </label>
+
+                </div>
+                <table id="table-photo" class="table">
+                    <tr>
+                        <th>文件名称</th>
+                        <th style="width: 200px;">文件大小</th>
+                        <th style="width: 200px;"> 操作</th>
+                    </tr>
+                </table>
+            </div>
+            <ol class="explan">
+                <h3>操作说明:</h3>
+                <li>应用列表界面: 进入<label class="hl-text">相册</label></li>
+                <li>左右手势操作切换 照片</li>
+                <li>默认1分钟自动切换照片</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer id="footer-wrap">
+        <p>©2023 疯狂豆立方应用系统</p>
+    </footer>
+
+
+    <!-- crazycube.js 业务逻辑 -->
+    <script type="text/javascript" src="crazycube.js"></script>
+
+    <!-- 样式辅助  -->
+    <script>
+        // 绑定点击事件
+        $('.tab a').unbind('click').click(function() {
+            $(this).addClass('active').siblings().removeClass('active');
+            tabSelected($(this).attr('href')); //切换菜单通知 tabSelected 函数
+        });
+        // 默认激活页
+        $('.tab a')[0].click();
+        //高度设置
+        $(function() {
+            // get height of header
+            var headerHeight = $('header').height();
+            $('a').click(function(e) { // e.preventDefault();
+                var target = $(this.hash);
+                $('html, body').animate({
+                    scrollTop: target.offset().top - headerHeight //scroll to header
+                }, 1);
+                return true;
+            });
+        });
+
+        //更新tab_header_space 高度, 占位高度设置为 header 相同高度
+        $(document).ready(function() {
+            var headerHeight = $('header').height();
+            $("#tab_header_space").css('height', `${headerHeight}px`);
+        })
+
+
+        //App 列表
+        group_0_row.addEventListener('click', function(e) {
+            if (e.target != this) {
+                if (e.target.nodeName !== "LI") return;
+                group_1_row.appendChild(e.target.cloneNode(true));
+                e.target.remove()
+            }
+        })
+
+        group_1_row.addEventListener('click', function(e) {
+            if (e.target != this) {
+                if (e.target.nodeName !== "LI") return;
+                group_0_row.appendChild(e.target.cloneNode(true));
+                e.target.remove()
+            }
+        })
+
+
+        //触发上传 rom
+        $("#nes_upload_btn").click(function() {
+            $("#nes_upload_input").click();
+        });
+
+        //触发上传 gif
+        $("#gif_upload_btn").click(function() {
+            $("#gif_upload_input").click();
+        });
+
+        //触发上传 photo
+        $("#photo_upload_btn").click(function() {
+            $("#photo_upload_input").click();
+        });
+
+        //TTS 声音选择
+        $('input[type=radio][name=tts-voice]').change(function() {
+            //custom
+            $("#tts-voice-custom").prop('disabled', this.value != -1);
+        });
+    </script>
+
+
+    <!-- 加载 数据 -->
+    <!-- <script>
+        $(function() {
+            initKeyboardOption();
+            loadSysInfos();
+        });
+    window.onload = function() { }
+    </script> -->
+
+</body>
+
+</html>
